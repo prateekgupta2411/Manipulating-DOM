@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <h2>Students</h2>
+    <div id="students"></div>
+    <button onclick="showStudents()">Show Students</button>
+    <script>
+        let students = [
+            { name: 'Bob', maths: 82, computers: 88 },
+            { name: 'Jack', maths: 44, computers: 55 },
+            { name: 'Mary', maths: 91, computers: 73 },
+            { name: 'Dave', maths: 60, computers: 89 },
+            { name: 'Julia', maths: 58, computers: 60 },
+            { name: 'Steve', maths: 42, computers: 47 }
+        ];
+
+        function showStudents() {
+            const arr1 = students.map(function (ele) {
+                let str = '<tr>';
+                str += '<td class="td1">' + ele.name + '</td>';
+                str += '<td class="td1">' + ele.maths + '</td>';
+                str += '<td class="td1">' + ele.computers + '</td>';
+                str += '</tr>';
+                return str;
+            });
+
+            let header = '<tr>';
+            header += '<th class="th1">Name</th>';
+            header += '<th class="th1">Maths</th>';
+            header += '<th class="th1">Computers</th>';
+            header += '</tr>';
+
+            let html = '<table class="table1">' + header + arr1.join('') + '</table>';
+            console.log(html);
+
+            let element = document.getElementById('students');
+            element.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

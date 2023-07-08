@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h2>Sales Data</h2>
+    <h3 id="namel">Seller: Jack Smith</h3>
+    <h3 id="salel">Total Sale: <span id="qty">12</span></h3>
+    <button onclick="addSale(1)">Add 1 to Sale</button>
+    <button onclick="addSale(2)">Add 2 to Sale</button>
+
+    <script>
+        function addSale(ant) {
+            let ele = document.getElementById('qty');
+            let quantity = +ele.innerHTML;
+            console.log(quantity);
+            quantity += ant;
+            ele.innerHTML = quantity;
+        }
+    </script>
+</body>
+</html>

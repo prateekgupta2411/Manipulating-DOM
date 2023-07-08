@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <h2>Students</h2>
+    <div id='students'></div>
+
+    <button onclick='showStudents()'>Show Students</button>
+    <button onclick='highMarks()'>Highlight marks</button>
+    <button onclick='highStudents()'>Highlight students</button>
+
+    <script>
+        let highlightMarks = false;
+        let highlightStudents = false;
+        let students = [
+            {name: 'Bob', maths: 82, computers: 88},
+            {name: 'Jack', maths: 44, computers: 55},
+            {name: 'Mary', maths: 91, computers: 73},
+            {name: 'Dave', maths: 60, computers: 89},
+            {name: 'Julia', maths: 58, computers: 60},
+            {name: 'Steve', maths: 42, computers: 47}
+        ];
+
+        function showStudentsTable() {
+            const arr = students.map(function(ele) {
+                let str = "<tr class='" + getClassStudent(ele) + "'>";
+                str += "<td class='td1'>" + ele.name + "</td>";
+                str += "<td class='" + getClassMarks(ele.maths) + "'>" + ele.maths + "</td>";
+                str += "<td class='" + getClassMarks(ele.computers) + "'>" + ele.computers + "</td>";
+                str += "</tr>";
+                return str;
+            });
+
+            let header = "<tr>";
+            header += "<th class='th1'>Name</th>";
+            header += "<th class='th1'>Maths</th>";
+            header += "<th class='th1'>Computers</th>";
+            header += "</tr>";
+            
+            let html = "<table class='table1'>" + header + arr.join('') + "</table>";
+            document.getElementById('students').innerHTML = html;
+        }
+
+        function getClassMarks(marks) {
+            if (marks >= 75 && highlightMarks)
+                return 'tdi score75';
+            else if (marks >= 50 && marks < 75 && highlightMarks)
+                return 'tdl score50';
+            else
+                return 'td1';
+        }
+
+        function getClassStudent(st) {
+            let tot = st.maths + st.computers;
+            if (tot >= 150 && highlightStudents)
+                return 'total150';
+            else if (tot < 150 && highlightStudents)
+                return 'total100';
+            else
+                return '';
+        }
+
+        function highMarks() {
+            highlightMarks = true;
+            highlightStudents = false;
+            showStudentsTable();
+        }
+
+        function highStudents() {
+            highlightStudents = true;
+            highlightMarks = false;
+            showStudentsTable();
+        }
+
+        function clearStyles() {
+            highlightStudents = false;
+            highlightMarks = false;
+            showStudentsTable();
+        }
+    </script>
+</body>
+</html>
