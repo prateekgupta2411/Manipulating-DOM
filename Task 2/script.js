@@ -11,11 +11,9 @@ var people = [
     {"name": "Harpreet", "country": "India", "age": 48},
     {"name": "Bob", "country": "USA", "age": 21}
 ];
-
 function showPeople() {
     var container = document.getElementById("people-list");
-    container.innerHTML = ""; // Clear previous content
-    
+    container.innerHTML = "";
     for (var i = 0; i < people.length; i++) {
         var person = people[i];
         var personInfo = "Name: " + person.name + ", Country: " + person.country + ", Age: " + person.age;
@@ -24,33 +22,28 @@ function showPeople() {
         container.appendChild(personElement);
     }
 }
-
 function hidePeople() {
     var container = document.getElementById("people-list");
-    container.innerHTML = ""; // Clear the content
+    container.innerHTML = ""; 
 }
-
 function sortByName() {
     people.sort(function(a, b) {
         return a.name.localeCompare(b.name);
     });
     showPeople();
 }
-
 function sortByCountry() {
     people.sort(function(a, b) {
         return a.country.localeCompare(b.country);
     });
     showPeople();
 }
-
 function sortByAge() {
     people.sort(function(a, b) {
         return a.age - b.age;
     });
     showPeople();
 }
-
 function sortByCountryAndName() {
     people.sort(function(a, b) {
         if (a.country === b.country) {
@@ -61,7 +54,6 @@ function sortByCountryAndName() {
     });
     showPeople();
 }
-
 function sortByCountryAndAge() {
     people.sort(function(a, b) {
         if (a.country === b.country) {
@@ -72,14 +64,12 @@ function sortByCountryAndAge() {
     });
     showPeople();
 }
-
 function showByCountry(country) {
     var filteredPeople = people.filter(function(person) {
         return person.country === country;
     });
     var container = document.getElementById("people-list");
-    container.innerHTML = ""; // Clear previous content
-    
+    container.innerHTML = ""; 
     for (var i = 0; i < filteredPeople.length; i++) {
         var person = filteredPeople[i];
         var personInfo = "Name: " + person.name + ", Country: " + person.country + ", Age: " + person.age;
@@ -88,17 +78,14 @@ function showByCountry(country) {
         container.appendChild(personElement);
     }
 }
-
 function styleByCountry() {
     var container = document.getElementById("people-list");
-    container.innerHTML = ""; // Clear previous content
-    
+    container.innerHTML = ""; 
     for (var i = 0; i < people.length; i++) {
         var person = people[i];
         var personInfo = "Name: " + person.name + ", Country: " + person.country + ", Age: " + person.age;
         var personElement = document.createElement("p");
         personElement.textContent = personInfo;
-        
         if (person.country === "India") {
             personElement.classList.add("person-india");
         } else if (person.country === "USA") {
@@ -110,17 +97,14 @@ function styleByCountry() {
         container.appendChild(personElement);
     }
 }
-
 function styleByAge() {
     var container = document.getElementById("people-list");
-    container.innerHTML = ""; // Clear previous content
-    
+    container.innerHTML = ""; 
     for (var i = 0; i < people.length; i++) {
         var person = people[i];
         var personInfo = "Name: " + person.name + ", Country: " + person.country + ", Age: " + person.age;
         var personElement = document.createElement("p");
         personElement.textContent = personInfo;
-        
         if (person.age <= 30) {
             personElement.classList.add("person-age-30");
         } else if (person.age > 30 && person.age <= 40) {
@@ -128,7 +112,6 @@ function styleByAge() {
         } else if (person.age >= 40) {
             personElement.classList.add("person-age-40plus");
         }
-        
         container.appendChild(personElement);
     }
 }
