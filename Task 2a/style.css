@@ -1,0 +1,10 @@
+#people-list {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+}
+
+.person {
+    margin-bottom: 5px;
+    font-weight: bold;
+}

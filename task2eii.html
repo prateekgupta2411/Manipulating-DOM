@@ -5,11 +5,11 @@
 </head>
 <body>
     <h2>Students</h2>
-    <div id='students'></div>
+    <div id='output'></div>
 
-    <button onclick='showStudents()'>Show Students</button>
-    <button onclick='highMarks()'>Highlight marks</button>
-    <button onclick='highStudents()'>Highlight students</button>
+    <button onclick='showStudentsTable()'>Show Students</button>
+    <button onclick='highlightMarks()'>Highlight marks</button>
+    <button onclick='highlightStudents()'>Highlight students</button>
 
     <script>
         let highlightMarks = false;
@@ -34,13 +34,13 @@
             });
 
             let header = "<tr>";
-            header += "<th class='th1'>Name</th>";
-            header += "<th class='th1'>Maths</th>";
-            header += "<th class='th1'>Computers</th>";
+            header += "<th class='th1' onclick='sort(0)'>Name</th>";
+            header += "<th class='th1' onclick='sort(1)'>Maths</th>";
+            header += "<th class='th1' onclick='sort(2)'>Computers</th>";
             header += "</tr>";
             
             let html = "<table class='table1'>" + header + arr.join('') + "</table>";
-            document.getElementById('students').innerHTML = html;
+            document.getElementById('output').innerHTML = html;
         }
 
         function getClassMarks(marks) {
@@ -62,22 +62,44 @@
                 return '';
         }
 
-        function highMarks() {
+        function highlightMarks() {
             highlightMarks = true;
             highlightStudents = false;
             showStudentsTable();
         }
 
-        function highStudents() {
+        function highlightStudents() {
             highlightStudents = true;
             highlightMarks = false;
             showStudentsTable();
         }
 
-        function clearStyles() {
+        function showStudent() {
             highlightStudents = false;
             highlightMarks = false;
             showStudentsTable();
+        }
+
+        function sort(colno){
+            if (colno === 0)
+                students.sort(sortName);
+            else if (colno === 1)
+                students.sort(sortMaths);
+            else
+                students.sort(sortComputers);
+            showStudentsTable();
+        }
+        
+        function sortName(st1, st2){
+            return st1.name.localeCompare(st2.name);
+        }
+        
+        function sortMaths(st1, st2){
+            return st1.maths - st2.maths;
+        }
+        
+        function sortComputers(st1, st2){
+            return st1.computers - st2.computers;
         }
     </script>
 </body>
