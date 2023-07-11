@@ -30,12 +30,10 @@
         function show() {
             const peopleList = document.getElementById('peoples');
             peopleList.innerHTML = '';
-
             const html = peoples.map(function(person) {
                 return '<li class="person-item"><span class="person-info">' +
                 person.name + ', ' + person.country + ', ' + person.age + '</span></li>';
             }).join('');
-
             peopleList.innerHTML = html;
         }
 
@@ -47,46 +45,28 @@
         function sortByNames() {
             const peopleList = document.getElementById('peoples');
             peopleList.innerHTML = '';
-
             const sortedPeople = [...peoples];
             sortedPeople.sort((a, b) => a.name.localeCompare(b.name));
-
-            const html = sortedPeople.map(function(person) {
-                return '<li class="person-item"><span class="person-info">' +
-                person.name + ', ' + person.country + ', ' + person.age + '</span></li>';
-            }).join('');
-
-            peopleList.innerHTML = html;
+            peoples = sortedPeople; 
+            show();
         }
 
         function sortByCountry() {
             const peopleList = document.getElementById('peoples');
             peopleList.innerHTML = '';
-
             const sortedPeople = [...peoples];
             sortedPeople.sort((a, b) => a.country.localeCompare(b.country));
-
-            const html = sortedPeople.map(function(person) {
-                return '<li class="person-item"><span class="person-info">' +
-                person.name + ', ' + person.country + ', ' + person.age + '</span></li>';
-            }).join('');
-
-            peopleList.innerHTML = html;
+            peoples = sortedPeople; 
+            show();
         }
 
         function sortByAge() {
             const peopleList = document.getElementById('peoples');
             peopleList.innerHTML = '';
-
             const sortedPeople = [...peoples];
             sortedPeople.sort((a, b) => a.age - b.age);
-
-            const html = sortedPeople.map(function(person) {
-                return '<li class="person-item"><span class="person-info">' +
-                person.name + ', ' + person.country + ', ' + person.age + '</span></li>';
-            }).join('');
-
-            peopleList.innerHTML = html;
+            peoples = sortedPeople; 
+            show();
         }
 
         function sortByCountryAndNames() {
@@ -97,7 +77,6 @@
                 }
                 return a.country.localeCompare(b.country);
             });
-
             peoples = sortedPeople; 
             show();
         }
