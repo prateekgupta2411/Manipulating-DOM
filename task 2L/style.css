@@ -1,0 +1,39 @@
+.person-item {
+    margin-bottom: 10px;
+}
+
+.person-info {
+    font-weight: bold;
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+.person-item .person-info {
+    color: black;
+}
+
+.person-item.india .person-info {
+    color: blue;
+}
+
+.person-item.usa .person-info {
+    color: green;
+}
+
+.person-item.france .person-info {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+.red {
+    color: red;
+}

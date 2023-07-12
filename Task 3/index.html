@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h2>List of people</h2>
+    <table id="peoples"></table>
+    <button onclick="show(peoples)">Show</button>
+    <button onclick="hide()">Hide</button>
+    <button onclick="sortByNames()">Sort by Name</button>
+    <button onclick="sortByCountry()">Sort by Country</button>
+    <button onclick="sortByAge()">Sort by Age</button>
+    <button onclick="sortByCountryAndNames()">Sort by Country and Name</button>
+    <button onclick="sortByCountryAndAge()">Sort by Country and Age</button>
+    <button onclick="filterByCountry('India')">India</button>
+    <button onclick="filterByCountry('USA')">USA</button>
+    <button onclick="filterByCountry('France')">France</button>
+    <button onclick="styleByCountry()">Style by Country</button>
+    <button onclick="styleByAge()">Style by Age</button>
+
+    <script>
+        let peoples = [
+    {"name":"Jack","country":"USA","age":35},
+    {"name":"Amit","country":"India","age":38},
+    {"name":"Edward","country":"USA","age":41},
+    {"name":"Vishal","country":"India","age":30},
+    {"name":"Annie","country":"USA","age":27},
+    {"name":"Nick","country":"France","age":32},
+    {"name":"Francis","country":"France","age":44},
+    {"name":"Preeti","country":"India","age":25},
+    {"name":"Sophie","country":"France","age":29},
+    {"name":"Harpreet","country":"India","age":48},
+    {"name":"Bob","country":"USA","age":21}
+];
+
+function show(array) {
+    const tableRows = array.map(function(person) {
+        let row = '<tr>';
+        row += '<td>' + person.name + '</td>';
+        row += '<td>' + person.country + '</td>';
+        row += '<td>' + person.age + '</td>';
+        row += '</tr>';
+        return row;
+    }).join('');
+
+    const tableHeader = '<tr><th>Name</th><th>Country</th><th>Age</th></tr>';
+    const tableHTML = '<table>' + tableHeader + tableRows + '</table>';
+
+    const peopleTable = document.getElementById('peoples');
+    peopleTable.innerHTML = tableHTML;
+}
+
+function hide() {
+    const peopleTable = document.getElementById('peoples');
+    peopleTable.innerHTML = '';
+}
+
+function sortByNames() {
+    const sortedPeople = [...peoples];
+    sortedPeople.sort((a, b) => a.name.localeCompare(b.name));
+    show(sortedPeople);
+}
+
+function sortByCountry() {
+    const sortedPeople = [...peoples];
+    sortedPeople.sort((a, b) => a.country.localeCompare(b.country));
+    show(sortedPeople);
+}
+
+function sortByAge() {
+    const sortedPeople = [...peoples];
+    sortedPeople.sort((a, b) => a.age - b.age);
+    show(sortedPeople);
+}
+
+function sortByCountryAndNames() {
+    const sortedPeople = [...peoples];
+    sortedPeople.sort((a, b) => {
+        if (a.country === b.country) {
+            return a.name.localeCompare(b.name);
+        }
+        return a.country.localeCompare(b.country);
+    });
+    show(sortedPeople);
+}
+
+function sortByCountryAndAge() {
+    const sortedPeople = [...peoples];
+    sortedPeople.sort((a, b) => {
+        if (a.country === b.country) {
+            return a.age - b.age;
+        }
+        return a.country.localeCompare(b.country);
+    });
+    show(sortedPeople);
+}
+
+function filterByCountry(country) {
+    if (country === 'India' || country === 'USA' || country === 'France') {
+        const filteredPeople = peoples.filter(person => person.country === country);
+        show(filteredPeople);
+    } else {
+        show(peoples);
+    }
+}
+
+function styleByCountry() {
+    const peopleList = document.getElementById('peoples').getElementsByTagName('tr');
+
+    for (let i = 0; i < peopleList.length; i++) {
+        const country = peopleList[i].getElementsByTagName('td')[1].innerText;
+        let color;
+        if (country === 'India') {
+            color = 'blue';
+        } else if (country === 'USA') {
+            color = 'green';
+        } else if (country === 'France') {
+            color = 'red';
+        }
+
+        peopleList[i].style.color = color;
+    }
+}
+
+function styleByAge() {
+    const peopleList = document.getElementById('peoples').getElementsByTagName('tr');
+
+    for (let i = 0; i < peopleList.length; i++) {
+        const age = parseInt(peopleList[i].getElementsByTagName('td')[2].innerText);
+        let color;
+
+        if (age <= 30) {
+            color = 'green';
+        } else if (age > 30 && age <= 40) {
+            color = 'blue';
+        } else {
+            color = 'red';
+        }
+
+        peopleList[i].style.color = color;
+    }
+}
+
+show(peoples);
+
+
+    </script>
+</body>
+</html>
