@@ -17,7 +17,7 @@
     <button onclick="filterByCountry('USA')">USA</button>
     <button onclick="filterByCountry('France')">France</button>
     <button onclick="styleByCountry()">Style by Country</button>
-    <button onclick="styleByAg()">Style by Age</button>
+    <button onclick="styleByAge()">Style by Age</button>
 
     <script>
         let peoples = [
@@ -33,103 +33,104 @@
             {"name":"Harpreet","country":"India","age":48},
             {"name":"Bob","country":"USA","age":21}
         ];
-    function show(array) {
-        const peopleList = document.getElementById('peoples');
-        peopleList.innerHTML = '';
-        const html = array.map(function(person) {
-        return '<li class="person-item ' + person.country.toLowerCase() + '"><span class="person-info">' +
-            person.name + ', ' + person.country + ', ' + person.age + '</span></li>';
-        }).join('');
-        peopleList.innerHTML = html;
-        styleByCountry();
-        styleByAge();
-    }
 
-    function hide() {
-        const peopleList = document.getElementById('peoples');
-        peopleList.innerHTML = '';
-    }
-
-    function sortByNames() {
-        const sortedPeople = [...peoples];
-        sortedPeople.sort((a, b) => a.name.localeCompare(b.name));
-        show(sortedPeople);
-    }
-
-    function sortByCountry() {
-        const sortedPeople = [...peoples];
-        sortedPeople.sort((a, b) => a.country.localeCompare(b.country));
-        show(sortedPeople);
-    }
-
-    function sortByAge() {
-        const sortedPeople = [...peoples];
-        sortedPeople.sort((a, b) => a.age - b.age);
-        show(sortedPeople);
-    }
-
-    function sortByCountryAndNames() {
-        const sortedPeople = [...peoples];
-        sortedPeople.sort((a, b) => {
-        if (a.country === b.country) {
-            return a.name.localeCompare(b.name);
-        }
-        return a.country.localeCompare(b.country);
-        });
-        show(sortedPeople);
-    }
-
-    function sortByCountryAndAge() {
-        const sortedPeople = [...peoples];
-        sortedPeople.sort((a, b) => {
-        if (a.country === b.country) {
-            return a.age - b.age;
-        }
-        return a.country.localeCompare(b.country);
-        });
-        show(sortedPeople);
-    }
-
-    function filterByCountry(country) {
-        if (country === 'India' || country === 'USA' || country === 'France') {
-        const filteredPeople = peoples.filter(person => person.country === country);
-        show(filteredPeople);
-        } else {
-        show(peoples);
-        }
-    }
-
-    function styleByCountry() {
-        const peopleList = document.getElementById('peoples').getElementsByTagName('li');
-
-        for (let i = 0; i < peopleList.length; i++) {
-        const country = peopleList[i].innerText.split(', ')[1];
-        let color;
-        if (country === 'India') {
-            color = 'blue';
-        } else if (country === 'USA') {
-            color = 'green';
-        } else if (country === 'France') {
-            color = 'red';
+        function show(array) {
+            const peopleList = document.getElementById('peoples');
+            peopleList.innerHTML = '';
+            const html = array.map(function(person) {
+                return '<li class="person-item ' + person.country.toLowerCase() + '"><span class="person-info">' +
+                    person.name + ', ' + person.country + ', ' + person.age + '</span></li>';
+            }).join('');
+            peopleList.innerHTML = html;
+            styleByCountry();
+            styleByAge();
         }
 
-        peopleList[i].style.color = color;
+        function hide() {
+            const peopleList = document.getElementById('peoples');
+            peopleList.innerHTML = '';
         }
-    }
 
-    function styleByAge() {
-        const peopleList = document.getElementById('peoples').getElementsByTagName('li');
+        function sortByNames() {
+            const sortedPeople = [...peoples];
+            sortedPeople.sort((a, b) => a.name.localeCompare(b.name));
+            show(sortedPeople);
+        }
 
-        for (let i = 0; i < peopleList.length; i++) {
-        const age = parseInt(peopleList[i].innerText.split(', ')[2]);
-        let color;
+        function sortByCountry() {
+            const sortedPeople = [...peoples];
+            sortedPeople.sort((a, b) => a.country.localeCompare(b.country));
+            show(sortedPeople);
+        }
 
-        if (age <= 30) {
-            color = 'green';
-        } else if (age > 30 && age <= 40) {
-            color = 'blue';
-        } else {
-            color = 'red';
+        function sortByAge() {
+            const sortedPeople = [...peoples];
+            sortedPeople.sort((a, b) => a.age - b.age);
+            show(sortedPeople);
+        }
+
+        function sortByCountryAndNames() {
+            const sortedPeople = [...peoples];
+            sortedPeople.sort((a, b) => {
+                if (a.country === b.country) {
+                    return a.name.localeCompare(b.name);
+                }
+                return a.country.localeCompare(b.country);
+            });
+            show(sortedPeople);
+        }
+
+        function sortByCountryAndAge() {
+            const sortedPeople = [...peoples];
+            sortedPeople.sort((a, b) => {
+                if (a.country === b.country) {
+                    return a.age - b.age;
+                }
+                return a.country.localeCompare(b.country);
+            });
+            show(sortedPeople);
+        }
+
+        function filterByCountry(country) {
+            if (country === 'India' || country === 'USA' || country === 'France') {
+                const filteredPeople = peoples.filter(person => person.country === country);
+                show(filteredPeople);
+            } else {
+                show(peoples);
+            }
+        }
+
+        function styleByCountry() {
+            const peopleList = document.getElementById('peoples').getElementsByTagName('li');
+
+            for (let i = 0; i < peopleList.length; i++) {
+                const country = peopleList[i].innerText.split(', ')[1];
+                let color;
+                if (country === 'India') {
+                    color = 'blue';
+                } else if (country === 'USA') {
+                    color = 'green';
+                } else if (country === 'France') {
+                    color = 'red';
+                }
+
+                peopleList[i].style.color = color;
+            }
+        }
+
+        function styleByAge() {
+            const peopleList = document.getElementById('peoples').getElementsByTagName('li');
+
+            for (let i = 0; i < peopleList.length; i++) {
+                const age = parseInt(peopleList[i].innerText.split(', ')[2]);
+                let color;
+
+                if (age <= 30) {
+                    color = 'green';
+                } else if (age > 30 && age <= 40){
+                    color = 'blue';
+                } else {
+                    color = 'red';
         }
 
         peopleList[i].style.color = color;

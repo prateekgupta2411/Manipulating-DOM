@@ -11,6 +11,7 @@
                 <th>Name</th>
                 <th>Country</th>
                 <th>Age</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id="peopleBody"></tbody>
@@ -48,11 +49,12 @@
         function show() {
             const peopleBody = document.getElementById('peopleBody');
             peopleBody.innerHTML = '';
-            const html = peoples.map(function(person) {
+            const html = peoples.map(function(person, index) {
                 return '<tr class="person-row">' +
                     '<td>' + person.name + '</td>' +
                     '<td>' + person.country + '</td>' +
                     '<td>' + person.age + '</td>' +
+                    '<td><button onclick="removePerson(' + index + ')">Remove</button></td>' +
                 '</tr>';
             }).join('');
             peopleBody.innerHTML = html;
@@ -141,6 +143,11 @@
             resetPeoples();
             const filteredPeople = peoples.filter(person => person.country === "France");
             peoples = filteredPeople;
+            show();
+        }
+
+        function removePerson(index) {
+            peoples.splice(index, 1);
             show();
         }
 

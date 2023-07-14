@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+button {
+    margin-right: 10px;
+}
+
+ul {
+    margin-right: 5px;
+    padding: 0;
+}
+
+.person-item {
+    margin-bottom: 10px;
+}
+
+.person-info {
+    font-weight: bold;
+}
+
+.usa {
+    color: green;
+}
+
+.india {
+    color: blue;
+}
+
+.france {
+    color: red;
+}
+
+.age-green {
+    color: green;
+}
+
+.age-blue {
+    color: blue;
+}
+
+.age-red {
+    color: red;
+}

@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+button {
+    margin-right: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+thead {
+    background-color: #333;
+    color: #fff;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+.person-row:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.person-row:nth-child(even) {
+    background-color: #fff;
+}
+
+.usa {
+    color: green;
+}
+
+.india {
+    color: blue;
+}
+
+.france {
+    color: red;
+}
+
+.age-green {
+    color: green;
+}
+
+.age-blue {
+    color: blue;
+}
+
+.age-red {
+    color: red;
+}
+
+th {
+    height: 40px;
+    border-bottom: 1px solid #333;
+}
+
+td {
+    border-bottom: 1px solid #ccc;
+}
+
