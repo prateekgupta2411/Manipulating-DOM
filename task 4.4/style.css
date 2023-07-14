@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.table1{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+.td1 {
+    font-weight: bold;
+    border: 1px solid black;
+    text-align: center;
+}
+.th1 {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+button {
+    margin-right: 10px;
+}
+
+ul {
+    margin-right: 5px;
+    padding: 0;
+}
+
+.person-item {
+    margin-bottom: 10px;
+}
+
+.person-info {
+    font-weight: bold;
+}
+
+.usa {
+    color: green;
+}
+
+.india {
+    color: blue;
+}
+
+.france {
+    color: red;
+}
+
+.age-green {
+    color: green;
+}
+
+.age-blue {
+    color: blue;
+}
+
+.age-red {
+    color: red;
+}
+
+
