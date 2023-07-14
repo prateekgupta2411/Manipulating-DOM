@@ -43,11 +43,12 @@
             let rows = '';
             for (let i = 0; i < peoples.length; i++) {
                 const person = peoples[i];
-                const row = '<tr class="' + getCountryColor(person.country) + '"><td class=\'td1\'>' + person.name + '</td><td class=\'td1\'>' + person.country + '</td><td class=\'td1 ' + getAgeColor(person.age) + '\'>' + person.age + '</td><td class=\'td1\'><button onclick="removePerson(' + i + ')">Remove</button></td></tr>';
+                const row = '<tr><td class=\'td1\'>' + person.name + '</td><td class=\'td1\'>' + person.country + '</td><td class=\'td1\'>' + person.age + '</td><td><button onclick="removePerson(' + i + ')">Remove</button></td></tr>';
                 rows += row;
             }
             table.innerHTML = headerRow + rows;
         }
+
 
         function hide() {
             const table = document.getElementById('peoplesTable');
@@ -191,5 +192,4 @@
     </script>
 </body>
 </html>
-
 
