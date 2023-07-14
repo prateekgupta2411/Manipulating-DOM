@@ -41,8 +41,9 @@
             table.innerHTML = '';
             const headerRow = '<tr><th class=\'th1\'>Name</th><th class=\'th1\'>Country</th><th class=\'th1\'>Age</th></tr>';
             let rows = '';
-            for (const person of peoples) {
-                const row = `<tr><td class=\'td1\'>${person.name}</td><td class=\'td1\'>${person.country}</td><td class=\'td1\'>${person.age}</td></tr>`;
+            for (let i = 0; i < peoples.length; i++) {
+                const person = peoples[i];
+                const row = '<tr><td class=\'td1\'>' + person.name + '</td><td class=\'td1\'>' + person.country + '</td><td class=\'td1\'>' + person.age + '</td></tr>';
                 rows += row;
             }
             table.innerHTML = headerRow + rows;
@@ -62,7 +63,9 @@
             const table = document.getElementById('peoplesTable');
             table.innerHTML = '';
             const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => a.name.localeCompare(b.name));
+            sortedPeople.sort(function (a, b) {
+                return a.name.localeCompare(b.name);
+            });
             peoples = sortedPeople; 
             show();
         }
@@ -72,7 +75,9 @@
             const table = document.getElementById('peoplesTable');
             table.innerHTML = '';
             const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => a.country.localeCompare(b.country));
+            sortedPeople.sort(function (a, b) {
+                return a.country.localeCompare(b.country);
+            });
             peoples = sortedPeople; 
             show();
         }
@@ -82,7 +87,9 @@
             const table = document.getElementById('peoplesTable');
             table.innerHTML = '';
             const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => a.age - b.age);
+            sortedPeople.sort(function (a, b) {
+                return a.age - b.age;
+            });
             peoples = sortedPeople; 
             show();
         }
@@ -90,7 +97,7 @@
         function sortByCountryAndNames() {
             resetPeoples();
             const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => {
+            sortedPeople.sort(function (a, b) {
                 if (a.country === b.country) {
                     return a.name.localeCompare(b.name);
                 }
@@ -103,7 +110,7 @@
         function sortByCountryAndAge() {
             resetPeoples();
             const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => {
+            sortedPeople.sort(function (a, b) {
                 if (a.country === b.country) {
                     return a.age - b.age;
                 }
@@ -115,21 +122,27 @@
 
         function showIndia() {
             resetPeoples();
-            const filteredPeople = peoples.filter(person => person.country === "India");
+            const filteredPeople = peoples.filter(function (person) {
+                return person.country === "India";
+            });
             peoples = filteredPeople;
             show();
         }
         
         function showUSA() {
             resetPeoples();
-            const filteredPeople = peoples.filter(person => person.country === "USA");
+            const filteredPeople = peoples.filter(function (person) {
+                return person.country === "USA";
+            });
             peoples = filteredPeople;
             show();
         }
         
         function showFrance() {
             resetPeoples();
-            const filteredPeople = peoples.filter(person => person.country === "France");
+            const filteredPeople = peoples.filter(function (person) {
+                return person.country === "France";
+            });
             peoples = filteredPeople;
             show();
         }

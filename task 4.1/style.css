@@ -3,8 +3,22 @@ body {
     margin: 20px;
 }
 
-h2 {
-    color: #333;
+.table1{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+.td1 {
+    font-weight: bold;
+    border: 1px solid black;
+    text-align: center;
+}
+.th1 {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 button {
@@ -47,3 +61,5 @@ ul {
 .age-red {
     color: red;
 }
+
+

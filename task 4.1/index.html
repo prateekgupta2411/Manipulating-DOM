@@ -4,21 +4,13 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <table id="peopleTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Country</th>
-                <th>Age</th>
-            </tr>
-        </thead>
-        <tbody id="peopleContainer"></tbody>
-    </table>
+    <h2>List of people</h2>
+    <table id="peoplesTable"></table>
     <button onclick="show()">Show</button>
     <button onclick="hide()">Hide</button>
-    <button onclick="sortByNames()">Sort by Name</button>
-    <button onclick="sortByCountry()">Sort by Country</button>
-    <button onclick="sortByAge()">Sort by Age</button>
+    <button onclick="sortTable('name')">Sort by Name</button>
+    <button onclick="sortTable('country')">Sort by Country</button>
+    <button onclick="sortTable('age')">Sort by Age</button>
     <button onclick="sortByCountryAndNames()">Sort by Country and Name</button>
     <button onclick="sortByCountryAndAge()">Sort by Country and Age</button>
     <button onclick="showIndia()">Show India</button>
@@ -28,7 +20,7 @@
     <button onclick="styleByAge()">Style by Age</button>
 
     <script>
-        let originalPeople = [
+        let originalPeoples = [
             {"name":"Jack","country":"USA","age":35},
             {"name":"Amit","country":"India","age":38},
             {"name":"Edward","country":"USA","age":41},
@@ -42,66 +34,60 @@
             {"name":"Bob","country":"USA","age":21}
         ];
 
-        let people = [...originalPeople];
+        let peoples = [...originalPeoples];
 
         function show() {
-            const peopleContainer = document.getElementById('peopleContainer');
-            peopleContainer.innerHTML = '';
-
-            people.sort((a, b) => a.name.localeCompare(b.name));
-
-            const items = people.map(function(person) {
-                return '<tr>' +
-                    '<td>' + person.name + '</td>' +
-                    '<td>' + person.country + '</td>' +
-                    '<td>' + person.age + '</td>' +
-                    '</tr>';
-            }).join('');
-            peopleContainer.innerHTML = items;
+            const table = document.getElementById('peoplesTable');
+            table.innerHTML = '';
+            const headerRow = '<tr><th class=\'th1\' onclick="sortTable(\'name\')">Name</th><th class=\'th1\' onclick="sortTable(\'country\')">Country</th><th class=\'th1\' onclick="sortTable(\'age\')">Age</th></tr>';
+            let rows = '';
+            for (let i = 0; i < peoples.length; i++) {
+                const person = peoples[i];
+                const row = '<tr><td class=\'td1\'>' + person.name + '</td><td class=\'td1\'>' + person.country + '</td><td class=\'td1\'>' + person.age + '</td></tr>';
+                rows += row;
+            }
+            table.innerHTML = headerRow + rows;
         }
+
         function hide() {
-            const peopleList = document.getElementById('peoples');
-            peopleList.innerHTML = '';
+            const table = document.getElementById('peoplesTable');
+            table.innerHTML = '';
         }
 
         function resetPeoples() {
             peoples = [...originalPeoples];
         }
 
-        function sortByNames() {
+        function sortTable(column) {
             resetPeoples();
-            const peopleList = document.getElementById('peoples');
-            peopleList.innerHTML = '';
+            const table = document.getElementById('peoplesTable');
+            table.innerHTML = '';
             const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => a.name.localeCompare(b.name));
-            peoples = sortedPeople; 
-            show();
-        }
-
-        function sortByCountry() {
-            resetPeoples();
-            const peopleList = document.getElementById('peoples');
-            peopleList.innerHTML = '';
-            const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => a.country.localeCompare(b.country));
-            peoples = sortedPeople; 
-            show();
-        }
-
-        function sortByAge() {
-            resetPeoples();
-            const peopleList = document.getElementById('peoples');
-            peopleList.innerHTML = '';
-            const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => a.age - b.age);
-            peoples = sortedPeople; 
+            switch (column) {
+                case 'name':
+                    sortedPeople.sort(function (a, b) {
+                        return a.name.localeCompare(b.name);
+                    });
+                    break;
+                case 'country':
+                    sortedPeople.sort(function (a, b) {
+                        return a.country.localeCompare(b.country);
+                    });
+                    break;
+                case 'age':
+                    sortedPeople.sort(function (a, b) {
+                        return a.age - b.age;
+                    });
+                    break;
+            }
+            peoples = sortedPeople;
             show();
         }
 
         function sortByCountryAndNames() {
             resetPeoples();
             const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => {
+            sortedPeople.sort(function (a, b) {
                 if (a.country === b.country) {
                     return a.name.localeCompare(b.name);
                 }
@@ -114,7 +100,7 @@
         function sortByCountryAndAge() {
             resetPeoples();
             const sortedPeople = [...peoples];
-            sortedPeople.sort((a, b) => {
+            sortedPeople.sort(function (a, b) {
                 if (a.country === b.country) {
                     return a.age - b.age;
                 }
@@ -126,21 +112,26 @@
 
         function showIndia() {
             resetPeoples();
-            const filteredPeople = peoples.filter(person => person.country === "India");
+            const filteredPeople = peoples.filter(function (person) {
+                return person.country === "India";
+            });
             peoples = filteredPeople;
             show();
         }
         
         function showUSA() {
             resetPeoples();
-            const filteredPeople = peoples.filter(person => person.country === "USA");
+            const filteredPeople = peoples.filter(function (person) {
+                return person.country === "USA";
+            });
             peoples = filteredPeople;
             show();
         }
-        
         function showFrance() {
             resetPeoples();
-            const filteredPeople = peoples.filter(person => person.country === "France");
+            const filteredPeople = peoples.filter(function (person) {
+                return person.country === "France";
+            });
             peoples = filteredPeople;
             show();
         }
@@ -148,24 +139,24 @@
         function styleByCountry() {
             resetPeoples();
             show();
-            const listItemElements = document.querySelectorAll('#peoples li');
-            for (let i = 0; i < listItemElements.length; i++) {
-                const li = listItemElements[i];
-                const personInfoElement = li.querySelector('.person-info');
-                const personCountry = peoples[i].country;
-                personInfoElement.classList.add(getCountryColor(personCountry));
+            const table = document.getElementById('peoplesTable');
+            const rows = table.getElementsByTagName('tr');
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const personCountry = peoples[i - 1].country;
+                row.classList.add(getCountryColor(personCountry));
             }
         }
 
         function styleByAge() {
             resetPeoples();
             show();
-            const listItemElements = document.querySelectorAll('#peoples li');
-            for (let i = 0; i < listItemElements.length; i++) {
-                const li = listItemElements[i];
-                const personInfoElement = li.querySelector('.person-info');
-                const personAge = peoples[i].age;
-                personInfoElement.classList.add(getAgeColor(personAge));
+            const table = document.getElementById('peoplesTable');
+            const rows = table.getElementsByTagName('tr');
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const personAge = peoples[i - 1].age;
+                row.classList.add(getAgeColor(personAge));
             }
         }
 
@@ -194,3 +185,4 @@
     </script>
 </body>
 </html>
+
